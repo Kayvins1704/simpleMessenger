@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  mongo-service:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: simpleMessenger
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+
+  simple-messenger:
+    build: .
+    container_name: simple-messenger-app
+    depends_on:
+      - mongo-service
+    environment:
+      SPRING_DATASOURCE_URL: mongodb://admin:password@mongo-service:27017/simpleMessenger?authSource=admin
+    ports:
+      - "8090:8090"
+
+volumes:
+  mongo-data:
