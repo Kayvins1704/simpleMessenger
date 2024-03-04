@@ -2,7 +2,6 @@
 
 ### Steps to follow to run the project
 
-* Unzip the zipped project
 * Run the following command in the base location of the project 
   * docker compose up simple-messenger --build
 * Hit localhost:8090/swagger-ui/index.html to access swagger link
